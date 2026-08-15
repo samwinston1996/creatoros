@@ -22,4 +22,4 @@ Real episodes live under `workspaces/content/`, outside all five repositories.
 4. The Brain creates transparent plans; it does not silently choose tools.
 5. Human approval is required for claims/script, final quality, and public posting.
 
-See `ARCHITECTURE.md`, `ROADMAP.md`, and `MIGRATION.md`.
+See `ARCHITECTURE.md`, `ROADMAP.md`, `PROJECT_STATUS.md`, and `MIGRATION.md`.

@@ -1,6 +1,8 @@
 # CreatorOS roadmap
 
-## Phase 1 — preserve and standardize (current)
+**Current operating mode:** Phases 1–2 are complete. The verified Phase 3 production checkpoint is complete, with optional comparative benchmarks deferred. Platform development is frozen while EP002–EP005 are produced. See `PROJECT_STATUS.md` for the authoritative checkpoint and resume rules.
+
+## Phase 1 — preserve and standardize (complete)
 
 - Create the hybrid repository family.
 - Separate system code from private content.
