@@ -111,6 +111,17 @@ class VerifyWorkspaceTests(unittest.TestCase):
         errors = verify_workspace.verify_workspace(self.root)
         self.assert_error_contains(errors, "schema_version must be 1.0.0")
 
+    def test_npm_package_metadata_inside_examples_is_not_a_creatoros_contract(self):
+        self.fixture.write_json(
+            "creator-production-platform/examples/reference-short/package.json",
+            {"name": "creatoros-reference-short", "private": True},
+        )
+        self.fixture.write_json(
+            "creator-production-platform/examples/reference-short/package-lock.json",
+            {"name": "creatoros-reference-short", "lockfileVersion": 3},
+        )
+        self.assertEqual(verify_workspace.verify_workspace(self.root), [])
+
     def test_audio_and_video_files_are_rejected(self):
         media = self.root / "creator-production-platform" / "example.mp4"
         media.write_bytes(b"not-real-media")

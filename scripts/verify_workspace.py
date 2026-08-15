@@ -75,6 +75,8 @@ def _records(value: Any) -> Iterable[dict]:
 
 def _is_example_or_catalog(path: Path, repository: Path) -> bool:
     relative_parts = path.relative_to(repository).parts
+    if path.name in {"package.json", "package-lock.json"}:
+        return False
     return any(part in {"examples", "catalog"} for part in relative_parts[:-1])
 
 
