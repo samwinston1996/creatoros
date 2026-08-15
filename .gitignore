@@ -1,0 +1,42 @@
+# OS/editor artifacts
+.DS_Store
+*.swp
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials/
+
+# Private CreatorOS artifacts
+episodes/
+analytics-exports/
+licensed-media/
+narration/
+raw-footage/
+renders/
+
+# Audio/video
+*.aac
+*.aiff
+*.avi
+*.flac
+*.m4a
+*.mkv
+*.mov
+*.mp3
+*.mp4
+*.mpeg
+*.wav
+*.webm

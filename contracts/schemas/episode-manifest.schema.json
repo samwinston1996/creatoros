@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CreatorOS EpisodeManifest",
+  "type": "object",
+  "required": ["schema_version", "episode_id", "slug", "status", "human_gates", "artifacts"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "episode_id": {"type": "string", "pattern": "^EP[0-9]{3,}$"},
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "status": {"type": "string"},
+    "human_gates": {"type": "object", "required": ["claims_and_script", "final_quality", "public_posting"]},
+    "artifacts": {"type": "object"}
+  }
+}

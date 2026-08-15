@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "episode_id": "EP000",
+  "technical_checks": [
+    {
+      "id": "synthetic-fixture",
+      "status": "not-run",
+      "details": "Documentation-only example; no episode media is included."
+    }
+  ],
+  "human_checks": {
+    "claims_and_script": false,
+    "final_quality": false,
+    "public_posting": false
+  },
+  "notes": ["Synthetic contract fixture only."]
+}

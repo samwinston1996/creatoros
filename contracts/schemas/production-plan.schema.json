@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CreatorOS ProductionPlan",
+  "type": "object",
+  "required": ["schema_version", "brief_id", "status", "selections", "missing_capabilities", "human_gates"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "brief_id": {"type": "string"},
+    "status": {"enum": ["ready", "incomplete"]},
+    "selections": {"type": "array"},
+    "missing_capabilities": {"type": "array", "items": {"type": "string"}},
+    "human_gates": {"type": "array", "items": {"type": "string"}}
+  }
+}

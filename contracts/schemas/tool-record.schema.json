@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://creatoros.local/schemas/tool.schema.json",
+  "title": "CreatorOS ToolRecord",
+  "type": "object",
+  "required": ["schema_version", "id", "name", "categories", "capabilities", "interfaces", "cost", "rights", "evidence", "review_after"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "name": {"type": "string"},
+    "categories": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "capabilities": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "interfaces": {"type": "object"},
+    "cost": {"type": "object"},
+    "requirements": {"type": "object"},
+    "rights": {"type": "object"},
+    "evidence": {"type": "array", "minItems": 1},
+    "review_after": {"type": "string", "format": "date"}
+  },
+  "additionalProperties": true
+}

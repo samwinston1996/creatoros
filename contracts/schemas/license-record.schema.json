@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CreatorOS LicenseRecord",
+  "type": "object",
+  "required": ["schema_version", "asset_id", "title", "creator", "source_url", "downloaded", "license", "evidence", "review_status"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "asset_id": {"type": "string"},
+    "title": {"type": "string"},
+    "creator": {"type": "string"},
+    "source_url": {"type": "string", "format": "uri"},
+    "downloaded": {"type": "string", "format": "date"},
+    "license": {"type": "object", "required": ["name", "url", "commercial_use", "attribution_required"]},
+    "evidence": {"type": "array", "items": {"type": "string", "format": "uri"}, "minItems": 1},
+    "production_changes": {"type": "array"},
+    "review_status": {"enum": ["needs-human-review", "approved", "rejected"]}
+  }
+}

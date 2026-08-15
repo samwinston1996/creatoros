@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CreatorOS ContentBrief",
+  "type": "object",
+  "required": ["schema_version", "id", "deliverable", "required_capabilities", "constraints", "human_gates"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "id": {"type": "string"},
+    "deliverable": {"type": "object", "required": ["kind"]},
+    "required_capabilities": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "constraints": {"type": "object"},
+    "human_gates": {"type": "array", "items": {"type": "string"}}
+  }
+}

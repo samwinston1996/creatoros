@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://creatoros.local/schemas/qc-report.schema.json",
+  "title": "CreatorOS QCReport",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "episode_id",
+    "technical_checks",
+    "human_checks"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "episode_id": {"type": "string", "pattern": "^EP[0-9]{3,}$"},
+    "technical_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "status"],
+        "properties": {
+          "id": {"type": "string"},
+          "status": {"enum": ["pass", "fail", "not-run"]},
+          "details": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "human_checks": {
+      "type": "object",
+      "required": ["claims_and_script", "final_quality", "public_posting"],
+      "properties": {
+        "claims_and_script": {"type": "boolean", "default": false},
+        "final_quality": {"type": "boolean", "default": false},
+        "public_posting": {"type": "boolean", "default": false}
+      },
+      "additionalProperties": false
+    },
+    "notes": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}
