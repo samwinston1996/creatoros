@@ -206,6 +206,19 @@ class VerifyWorkspaceTests(unittest.TestCase):
         for path in schemas.glob("*.json"):
             self.assertIsInstance(json.loads(path.read_text(encoding="utf-8")), dict)
 
+    def test_component_contract_must_match_canonical_contract(self):
+        canonical = {"$schema": "https://json-schema.org/draft/2020-12/schema", "title": "canonical"}
+        component = {"$schema": "https://json-schema.org/draft/2020-12/schema", "title": "stale"}
+        self.fixture.write_json(
+            "creatoros/contracts/schemas/license-record.schema.json", canonical
+        )
+        self.fixture.write_json(
+            "creator-governance/schemas/license-record.schema.json", component
+        )
+
+        errors = verify_workspace.verify_workspace(self.root)
+        self.assert_error_contains(errors, "contract diverges from canonical schema")
+
     def test_human_gate_defaults_must_remain_unapproved(self):
         manifest = self.root / "creator-production-platform/templates/episode/manifest.template.json"
         data = json.loads(manifest.read_text(encoding="utf-8"))

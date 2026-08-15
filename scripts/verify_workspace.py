@@ -41,6 +41,13 @@ ABSOLUTE_PRIVATE_PATH = re.compile(
     r"(?:/" + r"Users/|/" + r"home/|[A-Za-z]:[\\/](?:Users|Documents)[\\/])"
 )
 IGNORED_PARTS = {".git", "__pycache__"}
+CONTRACT_PAIRS = (
+    ("tool-record.schema.json", "creator-tool-arsenal", "schemas/tool.schema.json"),
+    ("content-brief.schema.json", "creator-brain", "schemas/content-brief.schema.json"),
+    ("production-plan.schema.json", "creator-brain", "schemas/production-plan.schema.json"),
+    ("episode-manifest.schema.json", "creator-production-platform", "schemas/episode-manifest.schema.json"),
+    ("license-record.schema.json", "creator-governance", "schemas/license-record.schema.json"),
+)
 
 
 def _walk_files(repository: Path) -> Iterable[Path]:
@@ -156,6 +163,22 @@ def verify_workspace(repos_root: Path) -> List[str]:
                             errors.append(f"{repository.name}/{relative}: schema_version must be 1.0.0")
 
                 _check_human_defaults(path, value, errors)
+
+    canonical_root = repos_root / "creatoros" / "contracts" / "schemas"
+    for canonical_name, repository_name, component_relative in CONTRACT_PAIRS:
+        canonical_path = canonical_root / canonical_name
+        component_path = repos_root / repository_name / component_relative
+        if not canonical_path.is_file() or not component_path.is_file():
+            continue
+        try:
+            canonical_value = json.loads(canonical_path.read_text(encoding="utf-8"))
+            component_value = json.loads(component_path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeError, json.JSONDecodeError):
+            continue
+        if canonical_value != component_value:
+            errors.append(
+                f"{repository_name}/{component_relative}: contract diverges from canonical schema {canonical_name}"
+            )
 
     return sorted(set(errors))
 
